@@ -15,13 +15,20 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (this.tag == "laser")
+        {
+            Move(1);
+        }
+        else
+        {
+            Move(Input.GetAxis("Vertical"));
+        }
         Rotate();
     }
-    void Move()
+    void Move(float number)
     {
 
-        transform.position = transform.position + transform.forward * moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
+        transform.position = transform.position + transform.forward * moveSpeed * number * Time.deltaTime;
 
     }
     void Rotate()
